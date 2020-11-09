@@ -11,7 +11,11 @@ public class Queen extends Piece {
 
     @Override
     public boolean canMove(Board board, Spot start, Spot end) {
-        if (end.getPiece().isWhite() == this.isWhite()) { return false; }
+        if (end.getPiece() != null) {
+            if (end.getPiece().isWhite() == this.isWhite()) {
+                return false;
+            }
+        }
         
         int x = Math.abs(start.getX() - end.getX());
         int y = Math.abs(start.getY() - end.getY());
@@ -27,5 +31,10 @@ public class Queen extends Piece {
             if (y % x == 0) { return true; }
         }
         return false;
+    }
+    
+    @Override
+    public String toString() {
+        return "Queen [isWhite()=" + isWhite() + ", isKilled()=" + isKilled() + "]";
     }
 }

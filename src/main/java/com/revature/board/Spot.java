@@ -36,6 +36,9 @@ public class Spot {
     public void setY(int y) {
         this.y = y;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Spot [piece=" + piece + ", x=" + x + ", y=" + y + "]";
+    }
 }

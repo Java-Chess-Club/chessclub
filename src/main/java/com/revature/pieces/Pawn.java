@@ -12,7 +12,11 @@ public class Pawn extends Piece {
 
     @Override
     public boolean canMove(Board board, Spot start, Spot end) {
-        if (end.getPiece().isWhite() == this.isWhite()) { return false; }
+        if (end.getPiece() != null) {
+            if (end.getPiece().isWhite() == this.isWhite()) {
+                return false;
+            }
+        }
         
         int x = Math.abs(start.getX() - end.getX());
         int y = Math.abs(start.getY() - end.getY());
@@ -25,10 +29,16 @@ public class Pawn extends Piece {
         }
         
         if(isFirstMove) {
-            return (x == 0 && y <= 2);
+            isFirstMove = false;
+            return (x <= 2 && y == 0);
         }
         else {
-            return (x == 0 && y == 1);
+            return (x == 1 && y == 0);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Pawn [isWhite()=" + isWhite() + ", isKilled()=" + isKilled() + "]";
     }
 }

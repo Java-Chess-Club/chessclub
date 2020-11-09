@@ -3,7 +3,7 @@ package com.revature.pieces;
 import com.revature.board.Board;
 import com.revature.board.Spot;
 
-public abstract class Piece implements Moveable {
+public abstract class Piece {
     
     private boolean killed = false;
     private boolean white = false;
@@ -31,7 +31,7 @@ public abstract class Piece implements Moveable {
     public abstract boolean canMove(Board board, Spot start, Spot end);
 
     @Override
-    public int move() {
-        return 1;
+    public String toString() {
+        return "Piece [killed=" + killed + ", white=" + white + "]";
     }
 }

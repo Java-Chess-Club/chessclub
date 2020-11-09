@@ -11,12 +11,21 @@ public class Bishop extends Piece {
 
     @Override
     public boolean canMove(Board board, Spot start, Spot end) {
-        if (end.getPiece().isWhite() == this.isWhite()) { return false; }
+        if (end.getPiece() != null) {
+            if (end.getPiece().isWhite() == this.isWhite()) {
+                return false;
+            }
+        }
         
         int x = Math.abs(start.getX() - end.getX());
         int y = Math.abs(start.getY() - end.getY());
         
         if (y != 0) { return x % y == 0; }
         else { return y % x == 0; }
+    }
+    
+    @Override
+    public String toString() {
+        return "Bishop [isWhite()=" + isWhite() + ", isKilled()=" + isKilled() + "]";
     }
 }
