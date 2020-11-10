@@ -23,11 +23,11 @@ public class Queen extends Piece {
         if ((x == 0 && y != 0) || (x != 0 && y == 0)) {
             return true;
         }
-        else if (y != 0) {
+        if (y != 0) {
             if (x % y == 0) { return true; }
            
         }
-        else if (x != 0) {
+        if (x != 0) {
             if (y % x == 0) { return true; }
         }
         return false;

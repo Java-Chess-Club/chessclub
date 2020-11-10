@@ -114,9 +114,14 @@ public class Game {
         System.out.println(game.board.getBox(5, 0));
         System.out.println();
         System.out.println(game.board.getBox(3, 0));
-        game.playerMove(p1, 3, 0, 5, 0);
+        game.playerMove(p1, 3, 0, 4, 0);
         System.out.println(game.board.getBox(3, 0));
+        System.out.println(game.board.getBox(4, 0));
+        System.out.println();
         System.out.println(game.board.getBox(5, 0));
+        game.playerMove(p2, 5, 0, 4, 0);
+        System.out.println(game.board.getBox(5, 0));
+        System.out.println(game.board.getBox(4, 0));
         
     }
 }

@@ -43,6 +43,16 @@ public class King extends Piece {
     
     public boolean isCastlingMove(Spot start, Spot end) {
         // check if the starting and ending position are correct
+        if(end.getPiece() != null) {
+            if (end.getPiece().isWhite() == this.isWhite()) {
+                int x = Math.abs(start.getX() - end.getX());
+                int y = Math.abs(start.getY() - end.getY());
+                if (x + y == 1) {
+                    //Logic for checking if move will not result in king being attacked
+                    return true;
+                }
+            }
+        }
         return false;
     }
     
