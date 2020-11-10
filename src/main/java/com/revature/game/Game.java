@@ -16,8 +16,21 @@ public class Game {
     private Player currentTurn;
     private GameStatus status;
     private List<Move> movesPlayed = new ArrayList<>();
+    private List<Piece> graveyard = new ArrayList<>();
     
-    private void initialize(Player p1, Player p2) {
+    public Board getBoard() {
+        return board;
+    }
+    
+    public List<Move> getMovesPlayed() {
+        return movesPlayed;
+    }
+    
+    public List<Piece> getGraveyard() {
+        return graveyard;
+    }
+
+    public void initialize(Player p1, Player p2) {
         players[0] = p1;
         players[1] = p2;
         
@@ -44,7 +57,7 @@ public class Game {
         this.status = status;
     }
     
-    public boolean playerMove (Player player, int startX, int startY, int endX, int endY) {
+    public boolean playerMove(Player player, int startX, int startY, int endX, int endY) {
         Spot startBox = board.getBox(startX, startY);
         Spot endBox = board.getBox(endX, endY);
         Move move = new Move(player, startBox, endBox);
@@ -64,6 +77,7 @@ public class Game {
         Piece destPiece = move.getEnd().getPiece();
         if (destPiece != null) {
             destPiece.setKilled(true);
+            graveyard.add(destPiece);
             move.setPieceKilled(destPiece);
         }
         
@@ -100,8 +114,8 @@ public class Game {
     
     public static void main(String[] args) {
         Game game = new Game();
-        Player p1 = new HumanPlayer(true);
-        Player p2 = new HumanPlayer(false);
+        Player p1 = new HumanPlayer(true, "jandrew");
+        Player p2 = new HumanPlayer(false, "scareras");
         game.initialize(p1, p2);
         System.out.println(game.board.getBox(1, 0));
         game.playerMove(p1, 1, 0, 3, 0);
@@ -109,19 +123,17 @@ public class Game {
         System.out.println(game.board.getBox(3, 0));
         System.out.println();
         System.out.println(game.board.getBox(6, 0));
-        game.playerMove(p2, 6, 0, 5, 0);
-        System.out.println(game.board.getBox(6, 0));
-        System.out.println(game.board.getBox(5, 0));
+        game.playerMove(p2, 6, 1, 4, 1);
+        System.out.println(game.board.getBox(6, 1));
+        System.out.println(game.board.getBox(4, 1));
         System.out.println();
         System.out.println(game.board.getBox(3, 0));
-        game.playerMove(p1, 3, 0, 4, 0);
+        game.playerMove(p1, 3, 0, 4, 1);
         System.out.println(game.board.getBox(3, 0));
-        System.out.println(game.board.getBox(4, 0));
+        System.out.println(game.board.getBox(4, 1));
         System.out.println();
-        System.out.println(game.board.getBox(5, 0));
-        game.playerMove(p2, 5, 0, 4, 0);
-        System.out.println(game.board.getBox(5, 0));
-        System.out.println(game.board.getBox(4, 0));
-        
+        System.out.println(game.getGraveyard());    
     }
+    
+    
 }

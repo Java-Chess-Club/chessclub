@@ -28,6 +28,10 @@ public class Pawn extends Piece {
             return true;
         }
         
+        if (end.getPiece() != null && x == 1 && y == 0) {
+            return false;
+        }
+        
         if(isFirstMove) {
             isFirstMove = false;
             return (x <= 2 && y == 0);
