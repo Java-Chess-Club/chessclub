@@ -1,13 +1,20 @@
 package com.revature.chess;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.Assert.*;
 
-@SpringBootTest
-class ChessApplicationTests {
+import org.junit.Test;
+
+import com.revature.board.Board;
+
+
+
+public class ChessApplicationTests {
+	
+	Board testBoard = new Board(); 
 
 	@Test
-	void contextLoads() {
+	public void boardResetTest() {
+		assertNotNull(testBoard); 
 	}
 
 }
