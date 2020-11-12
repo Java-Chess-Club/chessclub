@@ -115,24 +115,8 @@ public class Game {
     public static void main(String[] args) {
         Game game = new Game();
         Player p1 = new HumanPlayer(true, "jandrew");
-        Player p2 = new HumanPlayer(false, "scareras");
-        game.initialize(p1, p2);
-        System.out.println(game.board.getBox(1, 0));
-        game.playerMove(p1, 1, 0, 3, 0);
-        System.out.println(game.board.getBox(1, 0));
-        System.out.println(game.board.getBox(3, 0));
-        System.out.println();
-        System.out.println(game.board.getBox(6, 0));
-        game.playerMove(p2, 6, 1, 4, 1);
-        System.out.println(game.board.getBox(6, 1));
-        System.out.println(game.board.getBox(4, 1));
-        System.out.println();
-        System.out.println(game.board.getBox(3, 0));
-        game.playerMove(p1, 3, 0, 4, 1);
-        System.out.println(game.board.getBox(3, 0));
-        System.out.println(game.board.getBox(4, 1));
-        System.out.println();
-        System.out.println(game.getGraveyard());    
+        Player p2 = new HumanPlayer(false, "scaceres");
+        game.initialize(p1, p2);   
     }
     
     

@@ -28,6 +28,8 @@ public abstract class Piece {
         this.white = white;
     }
     
+    // public abstract List<Spot> possibleMoves?
+    
     public abstract boolean canMove(Board board, Spot start, Spot end);
 
     @Override

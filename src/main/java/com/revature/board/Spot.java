@@ -7,6 +7,10 @@ public class Spot {
     private int x;
     private int y;
     
+    // boolean protected-threatened by white
+    // boolean protected-threatened by black
+    
+    
     public Spot(int x, int y, Piece piece) {
         this.setPiece(piece);
         this.setX(x);

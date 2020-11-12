@@ -11,8 +11,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.revature.game.Game;
+import com.revature.pieces.Bishop;
 import com.revature.pieces.Pawn;
-import com.revature.pieces.Piece;
+import com.revature.pieces.Rook;
 import com.revature.players.HumanPlayer;
 import com.revature.players.Player;
 
@@ -59,6 +60,12 @@ public class ChessApplicationTests {
     }
     
     @Test
+    public void movePawnTwoSpacesBlockedByPiece() {
+    	game.getBoard().getBox(2, 0).setPiece(new Pawn(true));
+        assertFalse(game.playerMove(p1, 1, 0, 3, 0));
+    }
+    
+    @Test
     public void movePawnTestFail1() {
         assertFalse(game.playerMove(p2, 1, 0, 2, 0));
     }
@@ -70,8 +77,6 @@ public class ChessApplicationTests {
     
     @Test
     public void pawnKillSuccess() {
-        Piece pawn = new Pawn(false);
-        pawn.setKilled(true);
         game.playerMove(p1, 1, 0, 3, 0);
         game.playerMove(p2, 6, 1, 4, 1);
         game.playerMove(p1, 3, 0, 4, 1); 
@@ -79,9 +84,33 @@ public class ChessApplicationTests {
     }
     
     @Test
-    public void moveRookTest() {
+    public void moveRookBlockedByPieceTest() {
+        assertFalse(game.playerMove(p1, 0, 0, 5, 0));
+    }
+    
+    @Test
+    public void moveRookTestVerticalDown() {
+        game.getBoard().getBox(1, 0).setPiece(null);
+        game.getBoard().getBox(5, 0).setPiece(new Rook(true));
+        assertTrue(game.playerMove(p1, 5, 0, 1, 0));
+    }
+    
+    @Test
+    public void moveRookVerticalUpTest() {
         game.getBoard().getBox(1, 0).setPiece(null);
         assertTrue(game.playerMove(p1, 0, 0, 5, 0));
+    }
+    
+    @Test
+    public void moveRookHorizontalRight() {
+        game.getBoard().getBox(5, 0).setPiece(new Rook(true));
+        assertTrue(game.playerMove(p1, 5, 0, 5, 7));
+    }
+    
+    @Test
+    public void moveRookHorizontalLeft() {
+        game.getBoard().getBox(5, 7).setPiece(new Rook(true));;
+        assertTrue(game.playerMove(p1, 5, 7, 5, 0));
     }
     
     @Test
@@ -90,9 +119,32 @@ public class ChessApplicationTests {
     }
     
     @Test
-    public void moveBishopTest() {
+    public void moveBishopBlockedByPieceTest() {
+        assertFalse(game.playerMove(p1, 0, 2, 2, 0));
+    }
+    
+    @Test
+    public void moveBishopDiagonalUpLeft() {
         game.getBoard().getBox(1, 1).setPiece(null);
         assertTrue(game.playerMove(p1, 0, 2, 2, 0));
+    }
+    
+    @Test
+    public void moveBishopDiagonalUpRight() {
+    	game.getBoard().getBox(1, 3).setPiece(null);
+        assertTrue(game.playerMove(p1, 0, 2, 2, 4));
+    }
+    
+    @Test
+    public void moveBishopDiagonalDownRight() {
+    	game.getBoard().getBox(4, 3).setPiece(new Bishop(true));
+        assertTrue(game.playerMove(p1, 4, 3, 2, 5));
+    }
+    
+    @Test
+    public void moveBishopDiagonalDownLeft() {
+    	game.getBoard().getBox(4, 3).setPiece(new Bishop(true));
+        assertTrue(game.playerMove(p1, 4, 3, 2, 1));
     }
     
     @Test
